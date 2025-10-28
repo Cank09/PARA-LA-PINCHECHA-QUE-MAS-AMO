@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Te amoo mi pinchecha</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #ffe6f0; /* Fondo rosa suave */
+        font-family: 'Pacifico', cursive;
+    }
+
+    /* Texto central */
+    .text-center {
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 70px;
+        color: #ff4d6d;
+        text-align: center;
+        animation: colorChange 5s infinite alternate;
+        z-index: 10; /* Sobre los corazones */
+    }
+
+    @keyframes colorChange {
+        0% { color: #ff4d6d; }
+        20% { color: #ffb366; }
+        40% { color: #ffeb3b; }
+        60% { color: #66ff66; }
+        80% { color: #66ccff; }
+        100% { color: #cc66ff; }
+    }
+
+    /* Botón de presentación */
+    .present-button {
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        font-size: 30px;
+        background: linear-gradient(45deg, #ff4d6d, #ffb366, #66ccff);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 10;
+        transition: transform 0.2s, box-shadow 0.2s;
+        font-family: 'Pacifico', cursive;
+    }
+
+    .present-button:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Corazones que caen */
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        pointer-events: none;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(-50px) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="text-center">Te amoo mi pinchecha ❤️</div>
+
+<!-- Botón para la presentación -->
+<button class="present-button" onclick="window.open('https://www.canva.com/design/DAG3CjBFeL0/8ZHb8VCHAI4YJAGX8KrGtA/edit?utm_content=DAG3CjBFeL0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton','_blank')">
+    Mi Presentación ❤️
+</button>
+
+<script>
+    const colors = ["#ff4d6d", "#ffb366", "#ffeb3b", "#66ff66", "#66ccff", "#cc66ff"];
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 10000); // Elimina el corazón después de 10 segundos
+    }
+
+    // Generar corazones constantemente
+    setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
